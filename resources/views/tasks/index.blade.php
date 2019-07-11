@@ -6,30 +6,24 @@
 
     <div class="panel-body">
         <!-- Display Validation Errors -->
-        {{-- @include('common.errors') --}}
+        @include('common.errors')
 
         <!-- New Task Form -->
-        <form action="{{ url('task') }}" method="POST" class="form-horizontal">
-            {{ csrf_field() }}
-
-            <!-- Task Name -->
+        {!! Form::open(['method' => 'POST', 'route' => 'tasks.store', 'class' => 'form-horizontal']) !!}
             <div class="form-group">
-                <label for="task-name" class="col-sm-3 control-label">{{ __('translate.task') }}</label>
+                {!! Form::label('task-name', __('translate.task'), ['class' => 'col-sm-3 control-label']) !!}
 
                 <div class="col-sm-6">
-                    <input type="text" name="name" id="task-name" class="form-control">
+                    {!! Form::text('name', '', ['class' => 'form-control', 'id' => 'task-name']) !!}
                 </div>
             </div>
 
-            <!-- Add Task Button -->
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-6">
-                    <button type="submit" class="btn btn-default">
-                        <i class="fa fa-plus"></i> {{ __('translate.addtask') }}
-                    </button>
+                    {!! Form::submit(__('translate.addtask'), ['class' => 'btn btn-default']) !!}
                 </div>
             </div>
-        </form>
+        {!! Form::close() !!}
     </div>
 
     <!-- TODO: Current Tasks -->

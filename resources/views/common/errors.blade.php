@@ -1,19 +1,14 @@
-@extends('layouts.app')
+@if (count($errors) > 0)
+    <!-- Form Error List -->
+    <div class="alert alert-danger">
+        <strong>{{ trans('errors.error') }}</strong>
 
-@section('content')
+        <br><br>
 
-    @if (count($errors) > 0)
-        <!-- Form Error List -->
-        <div class="alert alert-danger">
-            <strong>Whoops! Something went wrong!</strong>
-
-            <br><br>
-
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-@endsection
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
