@@ -15,4 +15,9 @@ return [
     'ComfirmPass' => 'Comfirm Password',
     'Remember' => 'Remember me',
     'forgetPass' => 'Forget Your Password?',
+    'currentTask' => 'Current Task',
+    'delete' => 'Delete',
+    'task' => 'Tasks',
+    'action' => 'Action',
+    'noTask' => 'There is no task! All tasks are completed!',
 ];
