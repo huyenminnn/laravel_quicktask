@@ -5,17 +5,21 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+                <div class="card-header">{{ trans('translate.login') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
+                    {!! Form::open(['method' => 'POST', 'route' => 'login']) !!}
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            {!! Form::label('email', trans('translate.Email'), ['class' => 'col-md-4 col-form-label text-md-right']) !!}
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                {!! Form::email('email', old('email'), [
+                                    'class' => 'form-control '. ($errors->has('email') ? 'is-invalid':''),
+                                    'id' => 'email',
+                                    'required' => 'required',
+                                    'autocomplete' => 'email',
+                                    'autofocus',
+                                    ]) !!}
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -26,10 +30,15 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            {!! Form::label('password', trans('translate.Password'), ['class' => 'col-md-4 col-form-label text-md-right']) !!}
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                {!! Form::password('password', [
+                                    'class' => 'form-control '. ($errors->has('password') ? 'is-invalid':''),
+                                    'id' => 'password',
+                                    'required' => 'required',
+                                    'autocomplete' => 'current-password',
+                                    ]) !!}
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -42,29 +51,29 @@
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                    {!! Form::checkbox('remember', '', [
+                                        'class' => 'form-check-input',
+                                        'id' => 'remember',
+                                        'checked' => old('remember') ? 'checked' : '',
+                                        ]) !!}
 
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
+                                    {!! Form::label('remember', trans('translate.Remember'), ['class' => 'form-check-label']) !!}
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
+                                {!! Form::submit(trans('translate.login'), ['class' => 'btn btn-primary',]) !!}
 
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
+                                        {{ trans('translate.forgetPass') }}
                                     </a>
                                 @endif
                             </div>
                         </div>
-                    </form>
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>

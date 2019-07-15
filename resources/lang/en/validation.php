@@ -147,4 +147,9 @@ return [
 
     'attributes' => [],
 
+    'verifyEmail' => 'Verify Your Email Address',
+    'sendEmailVerify' => 'A fresh verification link has been sent to your email address.',
+    'checkEmailVerify' => 'Before proceeding, please check your email for a verification link.',
+    'errorEmail' => 'If you did not receive the email',
+    'checkLinkEmail' => 'click here to request another',
 ];
