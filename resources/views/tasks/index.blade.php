@@ -4,7 +4,7 @@
 
     <!-- Bootstrap Boilerplate... -->
 
-    <div class="panel-body">
+    <div class="panel-body container">
         <!-- Display Validation Errors -->
         @include('common.errors')
 
@@ -26,5 +26,50 @@
         {!! Form::close() !!}
     </div>
 
-    <!-- TODO: Current Tasks -->
+    <!-- Current Tasks -->
+    <div class="container panel panel-default">
+        @if (count($tasks) > 0)
+            <div class="panel-heading h2 text-primany">
+                {{ trans('translate.currentTask') }}
+            </div>
+
+            <div class="panel-body">
+                <table class="table table-bordered table-striped task-table">
+
+                    <!-- Table Headings -->
+                    <thead>
+                        <th>{{ trans('translate.task') }}</th>
+                        <th>{{ trans('translate.action') }}</th>
+                    </thead>
+
+                    <!-- Table Body -->
+                    <tbody>
+                        @foreach ($tasks as $task)
+                            <tr>
+                                <!-- Task Name -->
+                                <td class="table-text">
+                                    <div>{{ $task->name }}</div>
+                                </td>
+
+                                <td>
+                                    {!! Form::open(['method' => 'DELETE', 'route' => ['tasks.destroy', 'task'=>$task->id]]) !!}
+                                        {!! Form::submit(__('translate.delete'), [
+                                            'class' => 'btn btn-danger',
+                                            'id' => 'delete-task-'. $task->id,
+                                            ]) !!}
+
+                                    {!! Form::close() !!}
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+
+        @else
+            <div class="panel-heading h2 text-primany">
+                {{ trans('translate.noTask') }}
+            </div>
+        @endif
+    </div>
 @endsection
